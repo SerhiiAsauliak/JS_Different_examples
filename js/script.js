@@ -1,21 +1,32 @@
 "use strict";
 
-function getFibNum(num) {
-   if(isNaN(num) || !Number.isInteger(num)){
-      return '';
+let arr = [8, 2, 3, 12, 4, 7];
+let counter = 0;
+function sortFunc(arr){
+for (let i = 0; i < arr.length-1; i++) {
+   let isSort = false;
+   for (let j = 0; j < arr.length-1-i; j++) {
+      counter++;
+      if(arr[j] > arr[j+1]){  
+         let temp = arr[j+1];
+         arr[j+1] = arr[j];
+         arr[j] = temp;
+         isSort = true;
+      }
    }
-   let firstNum = 0;
-   let socondNum = 1;
-   let currentFibNum = 0;
-   let arrFibNum = [];
-   for (let i = 0; i < num; i++) {
-      arrFibNum[i] = currentFibNum;
-      currentFibNum = firstNum + socondNum;
-      socondNum = firstNum;
-      firstNum = currentFibNum;
+   if(isSort === false){
+      break;
    }
-   return (arrFibNum.join([' ']));
 }
-console.log(getFibNum(10));
+}
+console.log(arr);
+sortFunc(arr);
+console.log(arr);
+console.log(counter);
+
+
+
+
+
 
 
