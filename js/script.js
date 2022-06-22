@@ -1,28 +1,32 @@
 "use strict";
 
-let arr = [8, 2, 3, 12, 4, 7];
-let counter = 0;
-function sortFunc(arr){
-for (let i = 0; i < arr.length-1; i++) {
-   let isSort = false;
-   for (let j = 0; j < arr.length-1-i; j++) {
-      counter++;
-      if(arr[j] > arr[j+1]){  
-         let temp = arr[j+1];
-         arr[j+1] = arr[j];
-         arr[j] = temp;
-         isSort = true;
+const someString = 'This is some strange string';
+
+function reverseString(str) {
+   if(typeof(str) !== 'string'){
+      return ('Ошибка!');
+   }else{
+      let arr = [];
+      for (let key in str) {
+         arr[key] = str[key];
       }
-   }
-   if(isSort === false){
-      break;
+      let newArr = arr.slice().reverse();
+      return newArr.join('');
    }
 }
+function reverseStringQuick(str) {
+   if(typeof(str) !== 'string'){
+      return ('Ошибка!');
+   }else{
+      return str.split('').reverse().join('');
+   }
 }
-console.log(arr);
-sortFunc(arr);
-console.log(arr);
-console.log(counter);
+
+console.log(reverseString(someString));
+console.log(reverseString(10));
+console.log(reverseStringQuick(someString));
+console.log(reverseStringQuick(10));
+
 
 
 
