@@ -1,44 +1,28 @@
 "use strict";
 
-const shoppingMallData = {
-   shops: [
-      {
-         width: 10,
-         length: 5
-      },
-      {
-         width: 15,
-         length: 7
-      },
-      {
-         width: 20,
-         length: 5
-      },
-      {
-         width: 8,
-         length: 10
-      }
-   ],
-   height: 5,
-   moneyPer1m3: 30,
-   budget: 50000
-};
+const students = ['Peter','Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
 
-function isBudgetEnough(data) {
-   let shopsArea = 0;
-   for (let key in data.shops) {
-      let currenResult = data.shops[key].width * data.shops[key].length;
-      shopsArea += currenResult;
+function sortStudentsByGroups(arr, amount) {  
+// arr - our array,
+// amount means how many students do you want to see in group   
+   arr.sort();
+   let res = [];
+   for (let i = 0; i <= arr.length; i+=amount) {
+      let msg = 'Оставшиеся студенты:';
+      let temp = arr.slice(i,i + amount);
+      if(temp.length === 0){
+         res.push(msg + '-');
+         continue;
+      }else if(temp.length !== amount){
+         res.push(`${msg} ${temp.join(', ')}`);
+         continue;
+      }
+      res.push(temp);
    }
-   let mallArea = shopsArea * data.height;
-   let totalBudget = mallArea * data.moneyPer1m3;
-   if(totalBudget < data.budget){
-      return ('Бюджета достаточно');
-   }else{
-      return ('Бюджета недостаточно');
-   }
+   return res;
 }
-console.log(isBudgetEnough(shoppingMallData)); 
+
+console.log(sortStudentsByGroups(students, 3)); 
 
 
 
