@@ -1,39 +1,26 @@
 "use strict";
 
-const students = ['Peter','Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+const ball = document.querySelector('.ball');
+const wrapper = document.querySelector('.wrapper');
 
-function sortStudentsByGroups(arr, amount) {  
-// arr - our array,
-// amount means how many students do you want to see in group   
-   arr.sort();
-   let res = [];
-   for (let i = 0; i <= arr.length; i+=amount) {
-      let msg = 'Оставшиеся студенты:';
-      let temp = arr.slice(i,i + amount);
-      if(temp.length === 0){
-         res.push(msg + '-');
-         continue;
-      }else if(temp.length !== amount){
-         res.push(`${msg} ${temp.join(', ')}`);
-         continue;
-      }
-      res.push(temp);
+wrapper.addEventListener('mousedown', (event) => {
+   let ballCoordTop = event.clientY - ball.clientWidth;
+   let ballCoordLeft = event.clientX - ball.clientWidth;
+   
+   if (ballCoordTop < 0) {ballCoordTop = 0;} 
+   if (ballCoordLeft < 0) {ballCoordLeft = 0;}
+   if (ballCoordLeft + ball.clientWidth > wrapper.clientWidth) {
+     ballCoordLeft = wrapper.clientWidth - ball.clientWidth;
    }
-   return res;
-}
+   if (ballCoordTop + ball.clientWidth > wrapper.clientHeight) {
+     ballCoordTop = wrapper.clientHeight - ball.clientWidth;
+   }
 
-console.log(sortStudentsByGroups(students, 3)); 
-
-
-
-
-
+   ball.style.left = ballCoordLeft + 'px';
+   ball.style.top = ballCoordTop + 'px';
+ });
 
 
-
-
-
-
-
+      
 
 
